@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Foodshare.Models.FoodItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Donations</h2>
+
+<div class="row">
+    <div class="col-xs-12 text-right">
+
+        <a class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-plus"></span> New Donation</a>
+
+    </div>
+
+</div>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier.Guid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvailableFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvailableTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th></th>
+    </tr>*@
+
+@foreach (var item in Model) {
+
+    <div>
+        <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+        <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="400" height="400" />
+    </div>
+
+
+    @*<tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier.Guid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AvailableFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AvailableTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageUrl)
+        </td>
+        <td>
+
+        </td>
+    </tr>*@
+}
+
+@*</table>*@

@@ -2,62 +2,70 @@
     ViewBag.Title = "Home Page";
 }
 
+<div class="text-center">
+    <h1><img src="https://bendigofoodshare.org.au/wp-content/uploads/2016/12/foodshare_150_x_79.png" alt="Bendigo Foodshare" width="200" height="120"></h1>
+</div> 
 
-
-
-
-@section scripts{
-    
-    <script type="text/javascript">
-
-        $(function () {
-
-            $.ajax('/api/suppliers', {
-               
-            }).done(function (data) {
-
-                console.log(data.length);
-
-                });
-
-        });
-
-    </script>
-    
+ <style type='text/css'>  
+p {
+    font-size: 8.0pt;
+    font-family: "Arial",sans-serif;
+    color: #a6a6a6;
+    letter-spacing: -.1pt;
+    background: white;
 }
 
 
+button {
+	
+    background-color: orange; 
+    border: 1px solid black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+    
+}
+
+.firstbutton {
+float:left;
+top: 60%;
+margin:100px;
+}
+.secondbutton {
+float:left;
+margin:100px;
 
 
 
+}
+
+#container{
+	
+display:flex;
+flex-flow: row nowrap;
+justify-content:center;
+}
+    </style>
 
 
+<p> 
+<div id="container">
 
-
-@*<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="firstbutton">
+<form method="get" action="/forum.html">
+    <button type="submit">Agency</button>
+</form>
 </div>
+<div class="secondbutton">
+<form method="get" action="/supplier">
+    <button type="submit">Supplier</button>
+</form>
+</div>
+</div>
+ </p>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>*@
+
