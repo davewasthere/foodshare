@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+    <link href="createpost.css" rel="stylesheet" type="text/css" />
+    <script src="createpost.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="pageContainer">
+        <header>
+            <div id="mainHeading">
+                <h1>
+                    Create Food Item
+                </h1>
+            </div>
+        </header>
+
+        <nav>
+
+        </nav>
+
+        <main>
+
+            <div id="postForm">
+                <form>
+                    <div id="imageContainer">
+                        <img id="foodImage" />
+                        <label for="imgBox" id="imgLabel">
+                        Upload Image
+                        </label>
+                        <input type="file" id="imgBox" onchange="putImage()">
+                        <br />
+                    </div>
+                    <div id="fieldsContainer">
+                        <div class="fieldHeadings">Title:</div>
+                        <input type="text" size="42" name="titleField">
+                        <br />
+                        <div class="fieldHeadings">Description:</div>
+                        <textarea cols="40" rows="10" name="descField"></textarea>
+
+                        <br />
+                        <div class="fieldHeadings">Pickup Location:</div>
+
+                        <input type="text" size="42" name="locationField">
+                        <br />
+                        <div class="fieldHeadings">Deadline for pick-up:</div>
+                        <div id="datetime">
+                            Date: <input type="date" size="42" name="deadlineField"> Time: <input type="time" size="42" name="timeField">
+                        </div>
+
+                        <br />
+                        <div class="fieldHeadings">Available for pick-up after:</div>
+                        <input type="time" size="42" name="availableField">
+
+                        <br />
+                        <div class="fieldHeadings">Supplier Contact Name:</div>
+                        <input type="text" size="42" name="availableField">
+
+                        <br />
+                        <div class="fieldHeadings">Supplier Contact Number:</div>
+                        <input type="text" size="42" name="availableField">
+
+                        <div id="submitContainer">
+                            <input type="submit" id="submitButton">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </main>
+
+        <footer>
+
+        </footer>
+    </div>
+</body>
+
+</html>

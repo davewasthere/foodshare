@@ -49,10 +49,34 @@
 
 @foreach (var item in Model) {
 
+    @*
     <div>
         <h2>@item.Title</h2>
         <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="400" height="400" />
     </div>
+    *@
+
+
+<div = "row">
+        <div class="col-xs-12 col-sm-3 ">
+            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="100%" height="100%" />
+        </div>
+        <div class="col-xs-9 col-sm-6">
+          <h2>@Html.DisplayFor(modelItem => item.Title)</h2> <br>
+          <p>@Html.DisplayFor(modelItem => item.Supplier.Guid)<br>
+          @Html.DisplayFor(modelItem => item.Location)<br>
+          @Html.DisplayFor(modelItem => item.Description)<br>
+          @Html.DisplayFor(modelItem => item.AvailableFrom)<br>
+          @Html.DisplayFor(modelItem => item.AvailableTo)<br>
+          @Html.DisplayFor(modelItem => item.Contact)<br>
+          @Html.DisplayFor(modelItem => item.Phone)<br></p>
+        </div>
+        <div class="col-xs-3 col-sm-3">
+            <p>Available</p> <!-- This will be changed later -->
+      </div>
+
+
+
 
 
     @*<tr>
