@@ -1,12 +1,17 @@
 <!DOCTYPE HTML>
 <HTML>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
   <style type="text/css">
   table, th, td
   {
   border: 1px solid black;
   margin: 0px auto;"
+  align-content: center;
+  align-items: center;
   }
-  h1,h2,h3,p
+  h1,h2,h3,h4,p
   {
     text-align: center;
     align-self: center;
@@ -17,14 +22,20 @@
     margin: auto;
 }
   body {
+    padding-top: 70px;
     padding: 5;
     align-content: center;
     align-items: center;
   }
-  <div>
-    <div style="margin-left:auto;margin-right:auto;"></div>
-  </div>
-
+  #container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+  }
+  form {
+  margin: 0 auto;
+  width:250px;
+  }
   </style>
 
 
@@ -32,13 +43,46 @@
       <title>"Description Page"</title>
   </HEAD>
   <BODY>
-      <div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+      <div id="conta">
       <img src="https://bendigofoodshare.org.au/wp-content/uploads/2016/12/foodshare_150_x_79.png"/>
       <h1>This is the commit page</h1>
 
       <table style="width:60%">
         <!--Fetch for all posts, create table row -->
-        <tr onclick="window.document.location='#';">
+        <tr>
           <td> <img src="https://inspire.i.lithium.com/t5/image/serverpage/image-id/4117iA79414FF2EFE64C3?v=1.0"
                 height="200" width="200"</img>
           </td>
@@ -56,18 +100,23 @@
               <h4> AVAILABLE </h4>
               </td>
         </tr>
-
-        <tr >
-              <h2>Information Needed</h2>
-          <td>
-            <form>
-              Name: <input type = "text" name="name"> <br>
-              Phone: <input type = "text" name="phone">
-          </td>
-        </tr>
       </table>
-      <button type="button" name="cancel">Cancel</button>
-      <input type="submit" name="commit">
+      <br>
+            <h3>Information Needed</h3>
+              <form>
+                      Name: <input type = "text" name="name"> <br>
+                      Phone: <input type = "text" name="phone"><br>
+
+              <button type="button" name="cancel">Cancel</button>
+              <input type="submit" name="commit">
+                  </form>
+
       </div>
+
+      <!-- jQuery Version 1.11.1 -->
+      <script src="js/jquery.js"></script>
+
+      <!-- Bootstrap Core JavaScript -->
+      <script src="js/bootstrap.min.js"></script>
   </BODY>
 </HTML>
