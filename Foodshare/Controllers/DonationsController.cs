@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Foodshare.Models;
 using Microsoft.AspNet.Identity;
+using System.IO;
 
 namespace Foodshare.Controllers
 {
@@ -63,6 +64,11 @@ namespace Foodshare.Controllers
 
                 if (image != null && image.ContentLength > 0)
                 {
+                    if (!Directory.Exists(uploads))
+                    {
+                        Directory.CreateDirectory(uploads);
+                    }
+
                     image.SaveAs(uploads + "\\" + image.FileName);
                     donation.ImageUrl = "/content/uploads/" + image.FileName;
                 }
