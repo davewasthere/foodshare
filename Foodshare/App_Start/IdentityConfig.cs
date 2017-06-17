@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Foodshare.Models;
+using Foodshare.DAL;
 
 namespace Foodshare
 {
@@ -42,7 +43,7 @@ namespace Foodshare
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<DbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<FoodshareDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {

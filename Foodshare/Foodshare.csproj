@@ -201,8 +201,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\SupplierController.cs" />
-    <Compile Include="DAL\DbContext.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
+    <Compile Include="DAL\FoodshareDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
