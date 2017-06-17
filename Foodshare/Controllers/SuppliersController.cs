@@ -16,7 +16,26 @@ namespace Foodshare.Controllers
 
         public List<Supplier> Get()
         {
-            return db.Suppliers.ToList();
+            var suppliers = new List<Supplier>();
+
+            var supplier = new Supplier { Name = "test", SupplierId = 1 };
+
+            suppliers.Add(supplier);
+
+            return suppliers;
+        }
+
+
+        public HttpResponseMessage GetByEmail(string email)
+        {
+            var supplier = db.Suppliers.Where(x => x.Email == email).SingleOrDefault();
+
+            if (supplier == null)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, new Exception("that supplier doesn't exist"));
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, supplier);
         }
     }
 }
