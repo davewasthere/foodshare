@@ -15,7 +15,7 @@ namespace Foodshare.Controllers
         // GET: Forum
         public ActionResult Index()
         {
-            var items = db.FoodItems.ToList();
+            var items = db.Donations.ToList();
 
             return View(items);
         }

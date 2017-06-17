@@ -4,9 +4,18 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Donations</h2>
 
-<table class="table">
+<div class="row">
+    <div class="col-xs-12 text-right">
+
+        <a class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-plus"></span> New Donation</a>
+
+    </div>
+
+</div>
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Supplier.Guid)
@@ -36,10 +45,17 @@
             @Html.DisplayNameFor(model => model.ImageUrl)
         </th>
         <th></th>
-    </tr>
+    </tr>*@
 
 @foreach (var item in Model) {
-    <tr>
+
+    <div>
+        <h2>@item.Title</h2>
+        <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="400" height="400" />
+    </div>
+
+
+    @*<tr>
         <td>
             @Html.DisplayFor(modelItem => item.Supplier.Guid)
         </td>
@@ -70,7 +86,7 @@
         <td>
 
         </td>
-    </tr>
+    </tr>*@
 }
 
-</table>
+@*</table>*@

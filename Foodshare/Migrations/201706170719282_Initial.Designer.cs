@@ -7,13 +7,13 @@ namespace Foodshare.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class FoodItem : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FoodItem));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706170457143_FoodItem"; }
+            get { return "201706170719282_Initial"; }
         }
         
         string IMigrationMetadata.Source

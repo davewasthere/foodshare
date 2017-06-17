@@ -102,5 +102,4 @@ c:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.dll
 c:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.pdb
 c:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.Migrations.Initial.resources
 c:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.csproj.GenerateResource.Cache
-C:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.Migrations.SupplierEmail.resources
-C:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.Migrations.FoodItem.resources
+c:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.Migrations.Donation.resources

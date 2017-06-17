@@ -19,8 +19,7 @@ namespace Foodshare.DAL
             return new FoodshareDbContext();
         }
 
-        public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<FoodItem> FoodItems { get; set; }
+        public DbSet<Donation> Donations { get; set; }
 
     }
 }

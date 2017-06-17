@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Foodshare.Models.FoodItem>
+﻿@model IEnumerable<Foodshare.Models.Donation>
 
 @{
     ViewBag.Title = "Index";
@@ -50,7 +50,7 @@
 @foreach (var item in Model) {
 
     <div>
-        <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+        <h2>@item.Title</h2>
         <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="400" height="400" />
     </div>
 
