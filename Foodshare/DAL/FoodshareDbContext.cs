@@ -12,6 +12,8 @@ namespace Foodshare.DAL
     {
         public FoodshareDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
+
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<FoodshareDbContext, Foodshare.Migrations.Configuration>());
         }
 
         public static FoodshareDbContext Create()
