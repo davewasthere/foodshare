@@ -1,0 +1,95 @@
+body {
+    font-family: 'Open-Sans', serif;
+}
+
+#pageContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 80vw;
+    height: 100%;
+    background-color: #EF7103;
+}
+
+main {
+    position: relative;
+    margin-top: 1vw;
+}
+
+#mainHeading {
+    color: white;
+}
+
+#foodImage {
+    position: relative;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    width: 300px;
+}
+
+#imgLabel {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    background-color: #C91240;
+    width: 200px;
+    height: 200px;
+}
+
+#imgBox {
+    display: none;
+}
+
+#postForm {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#fieldsContainer {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 1vw;
+}
+
+#imageContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+#submitContainer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-self: flex-end;
+}
+
+#submitButton {
+    background-color: #EF7103;
+    border: 2px solid white;
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+    color: white;
+}
+
+.fieldHeadings {
+    font-weight: bolder;
+    margin-bottom: 3px;
+}
