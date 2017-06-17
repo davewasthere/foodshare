@@ -27,6 +27,18 @@
     align-content: center;
     align-items: center;
   }
+  button {
+    background-color: orange;
+    border: 1px solid black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
   #container{
     display: flex;
     flex-flow: column nowrap;
@@ -43,73 +55,69 @@
       <title>"Description Page"</title>
   </HEAD>
   <BODY>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
       <div id="conta">
       <img src="https://bendigofoodshare.org.au/wp-content/uploads/2016/12/foodshare_150_x_79.png"/>
       <h1>This is the commit page</h1>
+    </div>
 
-      <table style="width:60%">
-        <!--Fetch for all posts, create table row -->
-        <tr>
-          <td> <img src="https://inspire.i.lithium.com/t5/image/serverpage/image-id/4117iA79414FF2EFE64C3?v=1.0"
-                height="200" width="200"</img>
-          </td>
-          <td>
-          <h3> We got lots of food! (Title fetch)</h3>
-          <p> Address : (Fetch address)</p>
-          <p> Time: (Fetch Times here) </p>
-          <p> Name: (Fetch Name here) </p>
-          <p> Description: (Fetch Description here) <br>
-              This is where a description will go. <br>
-              Information and other things will go here once a post is made <br>
-              Plus more things to be written <br>
-              I hope.....<br>
-              Plus more text</p>
-              <h4> AVAILABLE </h4>
-              </td>
-        </tr>
-      </table>
-      <br>
-            <h3>Information Needed</h3>
+    <br>
+    <br>
+
+      <div = "row">
+          <div class="col-xs-12 col-sm-3 ">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Chicken_Pie.JPG/438px-Chicken_Pie.JPG"  width="100%" height="100%"/>
+          </div>
+          <div class="col-xs-9 col-sm-6">
+                <h3> We got lots of food! (Title fetch)</h3><br>
+                    <p> Address : (Fetch address) <br>
+                    Time: (Fetch Times here) <br>
+                    Name: (Fetch Name here) <br></p>
+                    <blockquote>Description: (Fetch Description here)
+                        This is where a description will go.
+                        Information and other things will go here once a post is made
+                        Plus more things to be written
+                        I hope.....
+                        Plus more text</blockquote>
+          </div>
+          <div class="col-xs-3 col-sm-3">
+              <h2>Available</h2>
+          </div>
+        </div>
+    
+   <!-- Section to display data
+      <div = "row">
+        
+        <div class="col-xs-12 col-sm-3 ">
+            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="100%" height="100%" />
+        </div>
+
+        <div class="col-xs-9 col-sm-6">
+          <h2>@Html.DisplayFor(modelItem => item.Title)</h2> <br>
+          <p>
+          Location: @Html.DisplayFor(modelItem => item.Location)<br>
+          Available from: @Html.DisplayFor(modelItem => item.AvailableFrom)<br>
+          Available to: @Html.DisplayFor(modelItem => item.AvailableTo)<br>
+          Contact: @Html.DisplayFor(modelItem => item.Contact)<br>
+          Phone Number: @Html.DisplayFor(modelItem => item.Phone)<br>
+        <blockquote>@Html.DisplayFor(modelItem => item.Description)</blockquote><br></p>
+       </div>
+     </div>
+    -->
+    
+    
+
+        <div = "row">
+            <div class="row-xs-12 row-sm-3 ">
+            <h3>Please enter your contact details</h3>
               <form>
-                      Name: <input type = "text" name="name"> <br>
-                      Phone: <input type = "text" name="phone"><br>
+                      <h4>Name <input type = "text" name="name" style="height:50px;"> <br>
+                      Phone <input type = "text" name="phone" style="height:50px;"></h4><br>
 
               <button type="button" name="cancel">Cancel</button>
-              <input type="submit" name="commit">
+              <button type="submit" name="commit">Commit</button>
                   </form>
+              </div>
+          </div>
 
       </div>
 
