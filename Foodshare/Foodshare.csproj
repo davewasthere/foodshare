@@ -199,8 +199,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="DAL\FoodshareDbContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,8 +212,17 @@
     <Compile Include="Migrations\201706170315021_Initial.Designer.cs">
       <DependentUpon>201706170315021_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706170446153_SupplierEmail.cs" />
+    <Compile Include="Migrations\201706170446153_SupplierEmail.Designer.cs">
+      <DependentUpon>201706170446153_SupplierEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706170457143_FoodItem.cs" />
+    <Compile Include="Migrations\201706170457143_FoodItem.Designer.cs">
+      <DependentUpon>201706170457143_FoodItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FoodItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Supplier.cs" />
@@ -276,6 +287,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
+    <Content Include="Views\Forum\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -298,6 +311,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706170315021_Initial.resx">
       <DependentUpon>201706170315021_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706170446153_SupplierEmail.resx">
+      <DependentUpon>201706170446153_SupplierEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706170457143_FoodItem.resx">
+      <DependentUpon>201706170457143_FoodItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

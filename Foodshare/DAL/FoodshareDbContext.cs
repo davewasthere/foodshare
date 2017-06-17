@@ -20,6 +20,7 @@ namespace Foodshare.DAL
         }
 
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<FoodItem> FoodItems { get; set; }
 
     }
 }

@@ -15,14 +15,9 @@ namespace Foodshare.Controllers
 
 
         public List<Supplier> Get()
-        {
-            var suppliers = new List<Supplier>();
+        { 
 
-            var supplier = new Supplier { Name = "test", SupplierId = 1 };
-
-            suppliers.Add(supplier);
-
-            return suppliers;
+            return db.Suppliers.ToList();
         }
 
 
