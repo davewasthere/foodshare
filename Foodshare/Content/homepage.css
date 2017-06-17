@@ -1,0 +1,41 @@
+p {
+    font-size: 8.0pt;
+    font-family: "Arial",sans-serif;
+    color: #a6a6a6;
+    letter-spacing: -.1pt;
+    background: white;
+}
+
+
+button {
+	
+    background-color: orange; 
+    border: 1px solid black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+
+.firstbutton {
+float:left;
+top: 60%;
+margin:100px;
+}
+.secondbutton {
+float:left;
+margin:100px;
+
+
+
+}
+
+#container{
+	
+display:flex;
+flex-flow: row nowrap;
+justify-content:center;
+}
+   
