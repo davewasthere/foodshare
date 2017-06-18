@@ -50,6 +50,11 @@
             {
                 <p style="margin-top: 1em;" class="text-danger">Donation is no longer available</p>
             }
+
+            @if (item.ClaimedById != null && item.ClaimedById == ViewBag.UserId)
+            {
+                <p style="margin-top: 1em;" class="text-success">You have claimed this Donation</p>
+            }
       </div>
     </div>
     <br>
