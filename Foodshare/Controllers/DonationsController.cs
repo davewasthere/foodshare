@@ -25,12 +25,14 @@ namespace Foodshare.Controllers
 
             if (User.IsInRole("Agency"))
             {
-                items = db.Donations.OrderByDescending(x => x.DonationId).ToList();
+                items = db.Donations.OrderByDescending(x => x.AvailableTo).ToList();
             }
             else
             {
-                items = db.Donations.Where(x => x.DonatedById == userId).OrderByDescending(x => x.DonationId).ToList();
+                items = db.Donations.Where(x => x.DonatedById == userId).OrderByDescending(x => x.AvailableTo).ToList();
             }
+
+            ViewBag.UserId = userId;
 
             return View(items);
         }
@@ -93,6 +95,24 @@ namespace Foodshare.Controllers
 
 
             return View(donation);
+        }
+
+
+
+        public ActionResult Claim(int id)
+        {
+            var donation = db.Donations.Where(x => x.DonationId == id).SingleOrDefault();
+            var userId = User.Identity.GetUserId();
+
+            ViewBag.UserId = userId;
+
+            return View(donation);
+        }
+
+        public ActionResult ConfirmClaim(int id)
+        {
+
+            return RedirectToAction("Claim", new { id = id });
         }
 
     }

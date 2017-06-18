@@ -230,6 +230,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\1280px-Treasure_trove_of_wasted_food.JPG" />
+    <Content Include="Content\Images\background.png" />
+    <Content Include="Content\Images\foodshare_150_x_79.png" />
+    <Content Include="Content\Images\Food_waste.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -288,6 +292,7 @@
     <Content Include="Views\Donations\Index.cshtml" />
     <Content Include="Views\Donations\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Donations\Claim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
