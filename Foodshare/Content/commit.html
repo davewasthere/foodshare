@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Foodshare - Commit to take</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <style>
+        .form-control {
+            margin-bottom: 2px;
+            margin-left: -3px;
+        }
+        
+        #form-group {
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+<BODY>
+    <div id="container">
+        <div id="commit-container">
+            <img src="foodshare_150_x_79.png" alt="bendigo foodshare logo" class="logo" />
+            <h1 class="title">This is the commit page</h1>
+
+            <table id="commit-table">
+                <!--Fetch for all posts, create table row -->
+                <tr onclick="window.document.location='#';">
+                    <td> <img src="https://inspire.i.lithium.com/t5/image/serverpage/image-id/4117iA79414FF2EFE64C3?v=1.0" height="200" width="200" alt="food image" class="foodImg" />
+                    </td>
+                    <td>
+                        <h3> We got lots of food! (Title fetch)</h3>
+                        <p> Address : (Fetch address)</p>
+                        <p> Time: (Fetch Times here) </p>
+                        <p> Name: (Fetch Name here) </p>
+                        <p> Description: (Fetch Description here) <br> This is where a description will go. <br> Information and other things will go here once a post is made <br> Plus more things to be written <br> I hope.....<br> Plus more text</p>
+                        <h4> AVAILABLE </h4>
+                    </td>
+                </tr>
+
+                <tr>
+                    <h2 class="title">Food item details</h2>
+                    <td>
+                        <form class="form-horizontal">
+                            <div id="form-group">
+                                <label for="commitName" class="sr-only">Name</label>
+                                <input type="text" class="form-control" id="commitName" placeholder="Name">
+                                <label for="commitPhone" class="sr-only">Phone</label>
+                                <input type="tel" class="form-control" id="commitPhone" placeholder="Phone">
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <p>By committing to this item you agree to the site guidelines as indicated <a href="#">here.</a></p>
+                    </td>
+                </tr>
+            </table>
+            <div id="commit-submit-container">
+                <button type="button" name="cancel" id="cancel-btn" class="btn btn-warning btn-lg">CANCEL</button>
+                <input type="submit" name="commit" value="COMMIT" class="btn btn-success btn-lg">
+            </div>
+        </div>
+    </div>
+</BODY>
+
+</html>
