@@ -1,0 +1,169 @@
+/*feature colors: #c91240 & #ef7103*/
+
+
+/* Set padding to keep content from hitting the edges */
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/*Main-CSS - we will need to integrate the above with the below*/
+
+#container {
+    position: absolute;
+    background-image: url("background.png");
+    background-position: fixed;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+table,
+th,
+td {
+    border: 1px solid #fff;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, .4);
+    margin: 0px auto;
+    color: #c91240;
+}
+
+table {
+    width: 60%;
+    margin-bottom: 20px;
+}
+
+td>p,
+th p,
+td p,
+td h1,
+td h2,
+td h3,
+td h4,
+td h5,
+td h6,
+td form {
+    color: #c91240;
+    padding-top: 7px;
+    padding-left: 7px;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+#commit-container {
+    padding: 5;
+    align-content: center;
+    align-items: center;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-family: 'Open Sans', serif;
+    color: #fff !important;
+}
+
+input,
+button {
+    font-family: 'Open Sans', serif;
+    color: #000;
+}
+
+#form-container {
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 100px;
+    background: transparent;
+    max-width: 300px;
+    min-height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title {
+    display: block;
+    text-align: center;
+}
+
+#title {
+    padding-top: 50px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+}
+
+#login {
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+#commit-submit-container {
+    display: block;
+    min-width: 100%;
+    text-align: center;
+    background: transparent;
+    padding-bottom: 30px;
+}
+
+#commit-submit-container>button {
+    margin-right: 30px;
+}
+
+#login-button,
+.commit {
+    display: inline-block;
+    position: relative;
+    color: #fff;
+    font-weight: 600;
+    background: transparent;
+    border: 2px solid #fff;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    font-size: 1.5em;
+    border-width: 3px;
+    clear: none;
+}
+
+.logo {
+    margin-top: 100px;
+    background: #fff;
+    padding: 5px;
+}
+
+#commit {}
+
+.claim-input {
+    margin-bottom: 5px;
+}
