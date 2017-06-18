@@ -35,7 +35,7 @@
           @Html.DisplayFor(modelItem => item.Phone)<br></p>
         </div>
         <div class="col-xs-3 col-sm-3">
-            <p>Available</p> <!-- This will be changed later -->
+            //<p>Available</p> <!-- This will be changed later -->
             @if (item.DonatedById == ViewBag.UserId)
             {
                 <div><a class="btn btn-default" href="@Url.Action("Edit", new { id = item.DonationId })">Edit</a></div>
@@ -47,6 +47,7 @@
             }
       </div>
     </div>
+    <br>
 
     }
 
