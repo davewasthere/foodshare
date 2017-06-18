@@ -103,3 +103,4 @@ c:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.pdb
 c:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.Migrations.Initial.resources
 c:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.csproj.GenerateResource.Cache
 c:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.Migrations.Donation.resources
+c:\Projects\Foodshare\Foodshare\obj\Debug\Foodshare.Migrations.IsAgency.resources

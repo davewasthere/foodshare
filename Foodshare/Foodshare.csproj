@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201706170736357_Donation.Designer.cs">
       <DependentUpon>201706170736357_Donation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706180012222_IsAgency.cs" />
+    <Compile Include="Migrations\201706180012222_IsAgency.Designer.cs">
+      <DependentUpon>201706180012222_IsAgency.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Donation.cs" />
@@ -310,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706170736357_Donation.resx">
       <DependentUpon>201706170736357_Donation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706180012222_IsAgency.resx">
+      <DependentUpon>201706180012222_IsAgency.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
