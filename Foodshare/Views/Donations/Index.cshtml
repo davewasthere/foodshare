@@ -6,6 +6,13 @@
 
 <h2>Donations</h2>
 
+@if (!ViewBag.EmailConfirmed)
+{
+<div class="row">
+    <div class="col-xs-12 text-danger"><h3>Warning: You won't get any notifications until you verify your email</h3></div>
+</div>
+}
+
 <div class="row">
     <div class="col-xs-12 text-right">
 
@@ -22,17 +29,15 @@
 
 <div class="row" style="margin-top: 1em;">
         <div class="col-xs-12 col-sm-3 ">
-            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" style="width: 100%;"/>
+            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" style="width: 100%; max-height: 500px; margin: 0 auto;"/>
         </div>
         <div class="col-xs-12 col-sm-6">
           <h2>@Html.DisplayFor(modelItem => item.Title)</h2> <br>
           <p>
           @Html.DisplayFor(modelItem => item.Location)<br>
-          @Html.DisplayFor(modelItem => item.Description)<br>
-          @Html.DisplayFor(modelItem => item.AvailableFrom)<br>
-          @Html.DisplayFor(modelItem => item.AvailableTo)<br>
-          @Html.DisplayFor(modelItem => item.Contact)<br>
-          @Html.DisplayFor(modelItem => item.Phone)<br></p>
+          @Html.DisplayFor(modelItem => item.Description)</p>
+
+            <div></div>
         </div>
         <div class="col-xs-12 col-sm-3">
 
@@ -49,6 +54,11 @@
             @if (item.AvailableTo < DateTime.Now)
             {
                 <p style="margin-top: 1em;" class="text-danger">Donation is no longer available</p>
+            }
+            
+            @if (item.ClaimedById != null && item.ClaimedById != ViewBag.UserId)
+            {
+                <p style="margin-top: 1em;" class="text-danger">Donation has been claimed </p>
             }
 
             @if (item.ClaimedById != null && item.ClaimedById == ViewBag.UserId)

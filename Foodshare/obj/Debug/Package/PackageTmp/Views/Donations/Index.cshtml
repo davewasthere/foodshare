@@ -22,7 +22,7 @@
 
 <div class="row" style="margin-top: 1em;">
         <div class="col-xs-12 col-sm-3 ">
-            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" style="width: 100%;"/>
+            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" style="width: 100%; max-height: 500px; margin: 0 auto;"/>
         </div>
         <div class="col-xs-12 col-sm-6">
           <h2>@Html.DisplayFor(modelItem => item.Title)</h2> <br>
@@ -49,6 +49,11 @@
             @if (item.AvailableTo < DateTime.Now)
             {
                 <p style="margin-top: 1em;" class="text-danger">Donation is no longer available</p>
+            }
+            
+            @if (item.ClaimedById != null && item.ClaimedById != ViewBag.UserId)
+            {
+                <p style="margin-top: 1em;" class="text-danger">Donation has been claimed </p>
             }
 
             @if (item.ClaimedById != null && item.ClaimedById == ViewBag.UserId)

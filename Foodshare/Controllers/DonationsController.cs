@@ -21,6 +21,8 @@ namespace Foodshare.Controllers
 
             var userId = User.Identity.GetUserId();
 
+            var verifiedEmail = db.Users.Where(x => x.Id == userId).Select(x => x.EmailConfirmed).Single();
+
             var items = new List<Donation>();
 
             if (User.IsInRole("Agency"))
@@ -33,6 +35,7 @@ namespace Foodshare.Controllers
             }
 
             ViewBag.UserId = userId;
+            ViewBag.EmailConfirmed = verifiedEmail;
 
             return View(items);
         }

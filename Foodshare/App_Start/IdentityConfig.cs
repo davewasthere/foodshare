@@ -12,14 +12,27 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Foodshare.Models;
 using Foodshare.DAL;
+using System.Net.Mail;
 
 namespace Foodshare
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public Task SendAsync(IdentityMessage msg)
         {
             // Plug in your email service here to send an email.
+
+            var message = new MailMessage();
+            message.To.Add(msg.Destination);
+
+            message.Subject = msg.Destination;
+            message.Body = msg.Body;
+
+            using (var smtpClient = new SmtpClient())
+            {
+                smtpClient.Send(message);
+            }
+
             return Task.FromResult(0);
         }
     }
