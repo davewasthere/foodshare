@@ -172,7 +172,7 @@ button {
 
 .commitName,
 .commitPhone {
-    border: 1px solid #c91240;
+    border: 1px solid #c91240 !important;
 }
 
 .claim-input {
