@@ -170,8 +170,8 @@ button {
     border-radius: 5px;
 }
 
-#commitName,
-#commitPhone {
+.commitName,
+.commitPhone {
     border: 1px solid #c91240;
 }
 
