@@ -111,6 +111,16 @@ namespace Foodshare.Controllers
 
         public ActionResult ConfirmClaim(int id)
         {
+            var donation = db.Donations.Where(x => x.DonationId == id).SingleOrDefault();
+            var userId = User.Identity.GetUserId();
+
+            if (donation.ClaimedById == null)
+            {
+                // we can claim it!
+                donation.ClaimedById = userId;
+                db.SaveChanges();
+            }
+
 
             return RedirectToAction("Claim", new { id = id });
         }

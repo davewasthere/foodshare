@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Foodshare.Models.Donation>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Donations";
 }
 
 <h2>Donations</h2>
@@ -20,11 +20,11 @@
 
 
 
-<div class="row">
+<div class="row" style="margin-top: 1em;">
         <div class="col-xs-12 col-sm-3 ">
-            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="100%" height="100%" />
+            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" style="width: 100%;"/>
         </div>
-        <div class="col-xs-9 col-sm-6">
+        <div class="col-xs-12 col-sm-6">
           <h2>@Html.DisplayFor(modelItem => item.Title)</h2> <br>
           <p>
           @Html.DisplayFor(modelItem => item.Location)<br>
@@ -34,19 +34,25 @@
           @Html.DisplayFor(modelItem => item.Contact)<br>
           @Html.DisplayFor(modelItem => item.Phone)<br></p>
         </div>
-        <div class="col-xs-3 col-sm-3">
-            <p>Available</p> <!-- This will be changed later -->
+        <div class="col-xs-12 col-sm-3">
+
             @if (item.DonatedById == ViewBag.UserId)
             {
-                <div><a class="btn btn-default" href="@Url.Action("Edit", new { id = item.DonationId })">Edit</a></div>
+                <p style="margin-top: 1em;"><a class="btn btn-default" href="@Url.Action("Edit", new { id = item.DonationId })">Edit</a></p>
             }
 
-            @if (User.IsInRole("Agency") && item.ClaimedById == null)
+            @if (User.IsInRole("Agency") && item.ClaimedById == null && item.AvailableTo > DateTime.Now && item.DonatedById != ViewBag.UserId)
             {
-                <div><a class="btn btn-default" href="@Url.Action("Claim", new { id = item.DonationId })"><span class="glyphicon glyphicon-heart"></span> Claim</a></div>
+                <p style="margin-top: 1em;"><a class="btn btn-default btn-lg" href="@Url.Action("Claim", new { id = item.DonationId })"><span class="glyphicon glyphicon-heart"></span> Claim</a></p>
+            }
+
+            @if (item.AvailableTo < DateTime.Now)
+            {
+                <p style="margin-top: 1em;" class="text-danger">Donation is no longer available</p>
             }
       </div>
     </div>
+    <br>
 
     }
 

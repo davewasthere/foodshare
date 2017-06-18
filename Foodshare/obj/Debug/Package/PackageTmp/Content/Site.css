@@ -1,6 +1,11 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+
+    /*background: transparent url('/Content/Images/background.png') no-repeat center center;
+    background-size: cover;*/
+
+    background-color: #f8be94;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -16,3 +21,7 @@
     white-space: normal;
 }
 
+.navbar-inverse {
+    background-color: #765a45;
+    border-color: #765a45;
+}
