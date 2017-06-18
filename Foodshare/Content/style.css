@@ -42,13 +42,13 @@ th,
 td {
     border: 1px solid #fff;
     border-collapse: collapse;
-    background-color: rgba(255, 255, 255, .4);
+    background-color: rgba(255, 255, 255, .7);
     margin: 0px auto;
     color: #c91240;
 }
 
-table {
-    width: 60%;
+#commit-table {
+    width: 70%;
     margin-bottom: 20px;
 }
 
@@ -62,7 +62,7 @@ td h4,
 td h5,
 td h6,
 td form {
-    color: #c91240;
+    color: #525252;
     padding-top: 7px;
     padding-left: 7px;
 }
@@ -87,7 +87,9 @@ h5,
 h6,
 p {
     font-family: 'Open Sans', serif;
-    color: #fff !important;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 500;
 }
 
 input,
@@ -111,6 +113,7 @@ button {
 .title {
     display: block;
     text-align: center;
+    color: #fff;
 }
 
 #title {
@@ -162,8 +165,17 @@ button {
     padding: 5px;
 }
 
-#commit {}
+.foodImg {
+    border: 1px solid #c91240;
+    border-radius: 5px;
+}
+
+#commitName,
+#commitPhone {
+    border: 1px solid #c91240;
+}
 
 .claim-input {
     margin-bottom: 5px;
 }
+
