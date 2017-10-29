@@ -20,6 +20,9 @@ namespace Foodshare.Controllers
         {
             var users = db.Users.ToList();
 
+            var roles = db.Roles.ToList();
+            ViewBag.Roles = roles;
+
             return View(users);
         }
 

@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using Foodshare.Models;
 using Microsoft.AspNet.Identity;
 using System.IO;
+using System.Net.Mail;
+using System.Configuration;
 
 namespace Foodshare.Controllers
 {
@@ -64,6 +66,9 @@ namespace Foodshare.Controllers
         {
             if (ModelState.IsValid)
             {
+                var sendEmail = false;
+
+
                 var uploads = Server.MapPath("~/content/uploads");
                 var image = Request.Files["DonationImage"];
 
@@ -84,6 +89,7 @@ namespace Foodshare.Controllers
                 {
                     db.Donations.Add(donation);
                     donation.DonatedById = User.Identity.GetUserId();
+                    sendEmail = true;
                 }
                 else
                 {
@@ -92,6 +98,44 @@ namespace Foodshare.Controllers
 
                 
                 db.SaveChanges();
+
+                if (sendEmail)
+                {
+                    var message = new MailMessage();
+
+                    message.To.Add("donations@foodshare.davebeer.com");
+
+                    var agencyRole = db.Roles.Where(x => x.Name == "Agency").SingleOrDefault();
+
+                    if (agencyRole != null)
+                    {
+                        var userIds = agencyRole.Users.Select(x => x.UserId).ToList();
+
+                        var users = db.Users.Where(x => userIds.Contains(x.Id) && x.EmailConfirmed).Select(x => x.Email).ToList();
+
+                        foreach (var user in users)
+                        { 
+                            message.Bcc.Add(new MailAddress(user));
+                        }
+
+                        
+                    }
+
+
+                    message.Subject = "New Donation Available: " + donation.Title;
+                    message.Body = donation.Description + "";
+
+                    using (var smtpClient = new SmtpClient())
+                    {
+
+                        // I've learnt my lesson with public repos. ;)
+                        System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["emailUsername"], ConfigurationManager.AppSettings["emailPassword"]);
+                        smtpClient.Credentials = credentials;
+
+                        smtpClient.Send(message);
+                    }
+                }
+
 
                 return RedirectToAction("Index");
             }

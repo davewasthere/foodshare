@@ -13,6 +13,7 @@ using Microsoft.Owin.Security;
 using Foodshare.Models;
 using Foodshare.DAL;
 using System.Net.Mail;
+using System.Configuration;
 
 namespace Foodshare
 {
@@ -30,6 +31,11 @@ namespace Foodshare
 
             using (var smtpClient = new SmtpClient())
             {
+
+                // I've learnt my lesson with public repos. ;)
+                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["emailUsername"], ConfigurationManager.AppSettings["emailPassword"]);
+                smtpClient.Credentials = credentials;
+
                 smtpClient.Send(message);
             }
 

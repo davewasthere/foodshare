@@ -10,23 +10,25 @@
 
     $(function () {
 
-        $('.user-agency').click(function () {
+        $('.user-role').click(function () {
 
             var id = $(this).attr('data-id');
+            var role = $(this).attr('data-role');
 
-            $.ajax('/Users/ToggleAgency', {
+            $.ajax('/Users/ToggleRole', {
                 method: 'POST',
-                data: { id: id }
+                data: { id: id, role: role }
             }).done(function (data) {
 
-                if (data.isAgency)
-                {
-                    $('#' + data.id + ' > span').removeClass('btn-default').addClass('btn-danger');
-                }
-                else {
-                    $('#' + data.id + ' > span').removeClass('btn-danger').addClass('btn-default');
-                    }
+
             });
+
+            if ($(this).hasClass('btn-danger')) {
+                $(this).removeClass('btn-danger').addClass('btn-link');
+            }
+            else {
+                $(this).removeClass('btn-link').addClass('btn-danger');
+            }
 
         });
 
@@ -38,18 +40,48 @@
 
 <h2>Users</h2>
 
-@foreach (var user in Model)
-{
-    <div class="row" style="margin-bottom: 1em;">
-        <div class="col-sm-3">@user.Email @if (user.EmailConfirmed) { <span class="glyphicon glyphicon-envelope"></span> }</div>
-        <div class="col-sm-6">@user.Company</div>
-        @*<div class="col-sm-3" id="@user.Id">@if (user.IsAgency) {
-            <span data-id="@user.Id" class="btn btn-danger user-agency">Agency</span>
-        }
-        else
+
+<table style="width: 100%;">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Company</th>
+            <th>Confirmed?</th>
+
+
+            @foreach (var role in ViewBag.Roles)
+            {
+                <th>@role.Name</th>
+            }
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var user in Model)
         {
-            <span data-id="@user.Id" class="btn btn-default user-agency">Agency</span>
+            <tr>
+                <td>@user.Email </td>
+                <td>@user.Company</td>
+                <td>@if (user.EmailConfirmed)
+                { <span class="glyphicon glyphicon-envelope"></span> }</td>
+
+                @foreach (var role in ViewBag.Roles)
+                {
+                    if (user.Roles.Select(x => x.RoleId).Contains((string)role.Id))
+                    {
+                        <td><span data-id="@user.Id" data-role="@role.Name" class="btn btn-danger user-role">X</span></td>
+                    }
+                    else
+                    {
+                        <td><span data-id="@user.Id" data-role="@role.Name" class="btn btn-link user-role">X</span></td>
+                    }
+
+                }
+
+            </tr>
         }
-        </div>*@
-    </div>
-}
+
+    </tbody>
+</table>
+
