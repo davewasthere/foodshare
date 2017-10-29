@@ -235,6 +235,7 @@
     <Content Include="Content\Images\background.png" />
     <Content Include="Content\Images\foodshare_150_x_79.png" />
     <Content Include="Content\Images\Food_waste.png" />
+    <Content Include="Content\Images\Sandwiches_Vienna.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

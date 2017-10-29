@@ -5,7 +5,7 @@
     /*background: transparent url('/Content/Images/background.png') no-repeat center center;
     background-size: cover;*/
 
-    background-color: #f8be94;
+    background-color: rgba(255, 116, 0, 0.1);
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,6 +22,19 @@
 }
 
 .navbar-inverse {
-    background-color: #765a45;
-    border-color: #765a45;
+    background-color: #ca1240;
+    border-color: #ca1240;
+}
+
+.hero-image {
+    background: transparent url('/Content/Images/Sandwiches_Vienna.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 300px;
+    padding: 2em;
+}
+
+.hero-image h1 {
+    color: #ccc;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 1em;
 }
