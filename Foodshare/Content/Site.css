@@ -1,10 +1,11 @@
-﻿body {
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 
     /*background: transparent url('/Content/Images/background.png') no-repeat center center;
     background-size: cover;*/
 
+    background-color: #fff;
     background-color: rgba(255, 116, 0, 0.1);
 }
 
@@ -35,6 +36,13 @@
 
 .hero-image h1 {
     color: #ccc;
+    background-color: #000;
     background-color: rgba(0, 0, 0, 0.4);
     padding: 1em;
+}
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+
+    margin-left: 0;
+
 }

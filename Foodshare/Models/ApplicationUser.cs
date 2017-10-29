@@ -12,7 +12,6 @@ namespace Foodshare.Models
 
         public string Company { get; set; }
         public string Telephone { get; set; }
-        public bool IsAgency { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

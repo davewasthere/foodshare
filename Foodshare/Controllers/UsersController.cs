@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Foodshare.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class UsersController : Controller
     {
         private FoodshareDbContext db = new FoodshareDbContext();
@@ -23,29 +23,29 @@ namespace Foodshare.Controllers
             return View(users);
         }
 
-        public ActionResult ToggleAgency(string id)
+        public ActionResult ToggleRole(string id, string role)
         {
             var user = db.Users.Find(id);
+            var isInRole = false;
 
             if (user != null)
             {
-                user.IsAgency = !user.IsAgency;
-
                 var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
-                if (!roleManager.RoleExists("Agency"))
+                if (!roleManager.RoleExists(role))
                 {
-                    roleManager.Create(new IdentityRole("Agency"));
+                    roleManager.Create(new IdentityRole(role));
                 }
 
-                if (user.IsAgency)
+                if (userManager.IsInRole(id, role))
                 {
-                    userManager.AddToRole(id, "Agency");
+                    userManager.RemoveFromRole(id, role);
                 }
                 else
                 {
-                    userManager.RemoveFromRole(id, "Agency");
+                    userManager.AddToRole(id, role);
+                    isInRole = true;
                 }
 
                 db.SaveChanges();
@@ -53,7 +53,7 @@ namespace Foodshare.Controllers
 
 
 
-            return Json(new { id = id, isAgency = user.IsAgency });
+            return Json(new { id = id, isInRole = isInRole });
         }
     }
 }

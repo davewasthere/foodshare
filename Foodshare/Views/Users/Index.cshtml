@@ -43,13 +43,13 @@
     <div class="row" style="margin-bottom: 1em;">
         <div class="col-sm-3">@user.Email @if (user.EmailConfirmed) { <span class="glyphicon glyphicon-envelope"></span> }</div>
         <div class="col-sm-6">@user.Company</div>
-        <div class="col-sm-3" id="@user.Id">@if (user.IsAgency) {
+        @*<div class="col-sm-3" id="@user.Id">@if (user.IsAgency) {
             <span data-id="@user.Id" class="btn btn-danger user-agency">Agency</span>
         }
         else
         {
             <span data-id="@user.Id" class="btn btn-default user-agency">Agency</span>
         }
-        </div>
+        </div>*@
     </div>
 }
