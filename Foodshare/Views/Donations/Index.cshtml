@@ -4,6 +4,41 @@
     ViewBag.Title = "Donations";
 }
 
+@section scripts{
+    
+<script>
+
+    $(function () {
+        updateCountdowns();
+    });
+
+
+    function updateCountdowns()
+    {
+        $('.countdown').each(function (index, value) {
+
+            var finish = $(value).attr('data-finish');
+
+            var eventTime = moment(finish, 'DD-MM-YYYY HH:mm:ss').unix();
+            var currentTime = moment().unix();
+            var diffTime = eventTime - currentTime;
+            var duration = moment.duration(diffTime * 1000, 'milliseconds')
+
+            var h = moment.duration(duration).hours();
+            var m = moment.duration(duration).minutes();
+            var s = moment.duration(duration).seconds();
+
+            $(value).text(h + ' hours ' + m + ' minutes ' + s + ' seconds')
+
+        });
+
+        setTimeout(updateCountdowns, 1000);
+    }
+
+</script>    
+    
+}
+
 <h2>Donations</h2>
 
 @if (!ViewBag.EmailConfirmed)
@@ -37,7 +72,7 @@
           @Html.DisplayFor(modelItem => item.Location)<br>
           @Html.DisplayFor(modelItem => item.Description)</p>
 
-            <div></div>
+            <div><strong>Date:</strong> @item.AvailableFrom.ToString("dd MMM yyyy") <strong>Time:</strong> between @item.AvailableFrom.ToString("HH:mm") and @item.AvailableTo.ToString("HH:mm")</div>
         </div>
         <div class="col-xs-12 col-sm-3">
 
@@ -48,6 +83,10 @@
 
             @if (User.IsInRole("Agency") && item.ClaimedById == null && item.AvailableTo > DateTime.Now && item.DonatedById != ViewBag.UserId)
             {
+                <p><strong>Remaining:</strong></p>
+                <p>
+                    <span class="countdown" data-finish="@item.AvailableTo.ToString("dd-MM-yyyy HH:mm:ss")"></span>
+                </p>
                 <p style="margin-top: 1em;"><a class="btn btn-default btn-lg" href="@Url.Action("Claim", new { id = item.DonationId })"><span class="glyphicon glyphicon-heart"></span> Claim</a></p>
             }
 
@@ -63,6 +102,11 @@
 
             @if (item.ClaimedById != null && item.ClaimedById == ViewBag.UserId)
             {
+                <p><strong>Pickup Within:</strong></p>
+                            <p>
+                                <span class="countdown" data-finish="@item.AvailableTo.ToString("dd-MM-yyyy HH:mm:ss")"></span>
+                            </p>
+
                 <p style="margin-top: 1em;" class="text-success">You have claimed this Donation</p>
             }
       </div>
