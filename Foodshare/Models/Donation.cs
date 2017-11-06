@@ -9,14 +9,20 @@ namespace Foodshare.Models
     public class Donation
     {
         public int DonationId { get; set; }
+
+        [Required]
         public string Title { get; set; }
 
+        [Required]
         public string Description { get; set; }
+
         public string Location { get; set; }
 
+        [Required]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime AvailableFrom { get; set; }
 
+        [Required]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime AvailableTo { get; set; }
 
@@ -30,5 +36,7 @@ namespace Foodshare.Models
 
         public string ClaimedById { get; set; }
         public virtual ApplicationUser ClaimedBy { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

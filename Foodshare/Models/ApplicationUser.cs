@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 
 namespace Foodshare.Models
 {
@@ -12,6 +13,10 @@ namespace Foodshare.Models
 
         public string Company { get; set; }
         public string Telephone { get; set; }
+        public string Address { get; set; }
+        public bool IsAgency { get; set; }
+
+        public DateTime DateCreated { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

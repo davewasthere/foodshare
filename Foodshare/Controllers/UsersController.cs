@@ -18,7 +18,7 @@ namespace Foodshare.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            var users = db.Users.ToList();
+            var users = db.Users.OrderByDescending(x => x.DateCreated).ToList();
 
             var roles = db.Roles.ToList();
             ViewBag.Roles = roles;

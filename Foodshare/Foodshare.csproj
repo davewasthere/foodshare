@@ -224,6 +224,18 @@
     <Compile Include="Migrations\201710290553018_RemoveIsAgencyProperty.Designer.cs">
       <DependentUpon>201710290553018_RemoveIsAgencyProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711010911592_Deleted.cs" />
+    <Compile Include="Migrations\201711010911592_Deleted.Designer.cs">
+      <DependentUpon>201711010911592_Deleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711060832283_UserProperties.cs" />
+    <Compile Include="Migrations\201711060832283_UserProperties.Designer.cs">
+      <DependentUpon>201711060832283_UserProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711060837565_Decorations.cs" />
+    <Compile Include="Migrations\201711060837565_Decorations.Designer.cs">
+      <DependentUpon>201711060837565_Decorations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Donation.cs" />
@@ -254,6 +266,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\downloads\Guidelines for donations of cooked or prepared food.pdf" />
+    <Content Include="Content\downloads\Label for donated prepared food.docx" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -334,6 +348,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710290553018_RemoveIsAgencyProperty.resx">
       <DependentUpon>201710290553018_RemoveIsAgencyProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711010911592_Deleted.resx">
+      <DependentUpon>201711010911592_Deleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711060832283_UserProperties.resx">
+      <DependentUpon>201711060832283_UserProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711060837565_Decorations.resx">
+      <DependentUpon>201711060837565_Decorations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

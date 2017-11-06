@@ -20,6 +20,7 @@ namespace Foodshare.Controllers
         // GET: Forum
         public ActionResult Index()
         {
+            var yesterday = DateTime.Now.AddDays(-1);
 
             var userId = User.Identity.GetUserId();
 
@@ -29,11 +30,11 @@ namespace Foodshare.Controllers
 
             if (User.IsInRole("Agency"))
             {
-                items = db.Donations.OrderByDescending(x => x.AvailableTo).ToList();
+                items = db.Donations.Where(x => !x.IsDeleted && x.AvailableTo > yesterday).OrderByDescending(x => x.AvailableTo).ToList();
             }
             else
             {
-                items = db.Donations.Where(x => x.DonatedById == userId).OrderByDescending(x => x.AvailableTo).ToList();
+                items = db.Donations.Where(x => !x.IsDeleted && x.AvailableTo > yesterday).Where(x => x.DonatedById == userId).OrderByDescending(x => x.AvailableTo).ToList();
             }
 
             ViewBag.UserId = userId;
@@ -103,7 +104,7 @@ namespace Foodshare.Controllers
                 {
                     var message = new MailMessage();
 
-                    message.To.Add("donations@foodshare.davebeer.com");
+                    message.To.Add(ConfigurationManager.AppSettings["donationsEmail"]);
 
                     var agencyRole = db.Roles.Where(x => x.Name == "Agency").SingleOrDefault();
 
@@ -121,18 +122,23 @@ namespace Foodshare.Controllers
                         
                     }
 
+                    var domainName = Request.Url.GetLeftPart(UriPartial.Authority);
+
 
                     message.Subject = "New Donation Available: " + donation.Title;
-                    message.Body = donation.Description + "";
+                    message.Body = "A new donation has been added at " + domainName  + "\r\n\r\nTitle: " + donation.Title + "\r\nDescription: " + donation.Description + "\r\nLocation: " + donation.Location;
 
                     using (var smtpClient = new SmtpClient())
                     {
+                        try
+                        {
+                            // I've learnt my lesson with public repos. ;)
+                            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["emailUsername"], ConfigurationManager.AppSettings["emailPassword"]);
+                            smtpClient.Credentials = credentials;
 
-                        // I've learnt my lesson with public repos. ;)
-                        System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["emailUsername"], ConfigurationManager.AppSettings["emailPassword"]);
-                        smtpClient.Credentials = credentials;
-
-                        smtpClient.Send(message);
+                            smtpClient.Send(message);
+                        }
+                        catch { }
                     }
                 }
 
