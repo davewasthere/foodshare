@@ -45,6 +45,7 @@
     <thead>
         <tr>
             <th>Email</th>
+            <th>Date</th>
             <th>Company</th>
             <th>Confirmed?</th>
 
@@ -62,6 +63,7 @@
         {
             <tr>
                 <td>@user.Email </td>
+                <td>@user.DateCreated.ToString()</td>
                 <td>@user.Company</td>
                 <td>@if (user.EmailConfirmed)
                 { <span class="glyphicon glyphicon-envelope"></span> }</td>

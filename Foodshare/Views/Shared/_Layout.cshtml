@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Bendigo Foodshare</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <script src='@Scripts.Url("~/bundles/modernizr")' async> </script>
 
     @RenderSection("head", required: false)
 </head>
