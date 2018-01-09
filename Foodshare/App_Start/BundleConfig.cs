@@ -22,12 +22,22 @@ namespace Foodshare
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/moment.js"));
+                      "~/Scripts/moment.js",
+                      "~/Scripts/bootstrap-datetimepicker.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      // "~/Content/bootstrap.css",
                       "~/Content/bootstrap-theme.css",
                       "~/Content/site.css"));
+
+            var customStyles = new Bundle("~/Content/datetime")
+                       .Include("~/Content/bootstrap-datetimepicker-build.less");
+
+            customStyles.Transforms.Add(new LessTransform());
+            customStyles.Transforms.Add(new CssMinify());
+            bundles.Add(customStyles);
+
+
 
             BundleTable.EnableOptimizations = true;
         }

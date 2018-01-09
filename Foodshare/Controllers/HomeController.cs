@@ -8,6 +8,7 @@ namespace Foodshare.Controllers
 {
     public class HomeController : Controller
     {
+        [RequireHttps]
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)

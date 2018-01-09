@@ -12,6 +12,8 @@ using System.Configuration;
 
 namespace Foodshare.Controllers
 {
+    [RequireHttps]
+
     [Authorize]
     public class DonationsController : Controller
     {
@@ -28,13 +30,20 @@ namespace Foodshare.Controllers
 
             var items = new List<Donation>();
 
-            if (User.IsInRole("Agency"))
+            if (User.IsInRole("Administrator"))
             {
-                items = db.Donations.Where(x => !x.IsDeleted && x.AvailableTo > yesterday).OrderByDescending(x => x.AvailableTo).ToList();
+                items = db.Donations.OrderByDescending(x => x.DonationId).Take(50).ToList();
             }
             else
             {
-                items = db.Donations.Where(x => !x.IsDeleted && x.AvailableTo > yesterday).Where(x => x.DonatedById == userId).OrderByDescending(x => x.AvailableTo).ToList();
+                if (User.IsInRole("Agency"))
+                {
+                    items = db.Donations.Where(x => !x.IsDeleted && x.AvailableTo > yesterday).OrderByDescending(x => x.AvailableTo).ToList();
+                }
+                else
+                {
+                    items = db.Donations.Where(x => !x.IsDeleted && x.AvailableTo > yesterday).Where(x => x.DonatedById == userId).OrderByDescending(x => x.AvailableTo).ToList();
+                }
             }
 
             ViewBag.UserId = userId;

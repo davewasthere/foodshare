@@ -10,6 +10,8 @@ using Foodshare.Models;
 
 namespace Foodshare.Controllers
 {
+    [RequireHttps]
+
     [Authorize]
     public class ManageController : Controller
     {

@@ -10,6 +10,8 @@ using System.Web.Mvc;
 
 namespace Foodshare.Controllers
 {
+    [RequireHttps]
+
     [Authorize]
     public class AccountController : Controller
     {
