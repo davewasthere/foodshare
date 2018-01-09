@@ -29,7 +29,9 @@ namespace Foodshare
             message.From = new MailAddress("no-reply@donations.bendigofoodshare.org.au", "Bendigo Foodshare Donations");
 
             message.Subject = msg.Destination;
+
             message.Body = msg.Body;
+            message.IsBodyHtml = true;
 
             using (var smtpClient = new SmtpClient())
             {

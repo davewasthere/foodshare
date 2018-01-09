@@ -14,12 +14,12 @@
 
 @section head{
 
-@Styles.Render("~/Content/datetime")    
-    
+    @Styles.Render("~/Content/datetime")
+
 }
 
 @section scripts{
-    
+
     <script type="text/javascript">
 
 
@@ -33,8 +33,8 @@
         });
 
 
-    </script>    
-    
+    </script>
+
 }
 
 <h2>@ViewBag.Title</h2>
@@ -48,7 +48,7 @@
     @Html.HiddenFor(m => m.DonatedById)
 
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    
+
     <div class="form-group">
         @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -66,7 +66,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows="8", placeholder = "A fuller description of item\r\n\r\nInclude:\r\n- " })
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "8", placeholder = "A fuller description of item\r\n\r\nInclude:\r\n- " })
         </div>
     </div>
 
@@ -74,6 +74,13 @@
         @Html.LabelFor(m => m.Location, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Location, new { @class = "form-control", placeholder = "Street Address ideally" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Contact Telephone" })
         </div>
     </div>
 
@@ -113,7 +120,7 @@
                 <input type="submit" class="btn btn-default" value="Update donation" />
             }
 
-            
+
         </div>
     </div>
 }

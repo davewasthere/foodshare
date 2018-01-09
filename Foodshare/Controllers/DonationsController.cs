@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Net.Mail;
 using System.Configuration;
+using Foodshare.Helper;
 
 namespace Foodshare.Controllers
 {
@@ -25,6 +26,16 @@ namespace Foodshare.Controllers
             var yesterday = DateTime.Now.AddDays(-1);
 
             var userId = User.Identity.GetUserId();
+
+            var phoneNumber = db.Users.Where(x => x.Id == userId).Select(x => x.PhoneNumber).Single();
+
+            if (User.IsInRole("Agency"))
+            {
+                if (String.IsNullOrWhiteSpace(phoneNumber))
+                {
+                    return RedirectToAction("EditPhoneNumber", "Manage");
+                }
+            }
 
             var verifiedEmail = db.Users.Where(x => x.Id == userId).Select(x => x.EmailConfirmed).Single();
 
@@ -55,6 +66,16 @@ namespace Foodshare.Controllers
         public ActionResult Edit(int? id)
         {
             var donation = new Donation();
+
+            var userId = User.Identity.GetUserId();
+
+            var prevDonation = db.Donations.Where(x => x.DonatedById == userId).OrderByDescending(x => x.DonationId).FirstOrDefault();
+
+            if (prevDonation != null)
+            {
+                donation.Location = prevDonation.Location;
+                donation.Phone = prevDonation.Phone;
+            }
 
             donation.AvailableFrom = DateTime.Now;
             donation.AvailableTo = DateTime.Now.AddHours(3);
@@ -108,6 +129,9 @@ namespace Foodshare.Controllers
 
                 
                 db.SaveChanges();
+
+                //donation.DonatedBy.PhoneNumber = donation.Phone;
+                //db.SaveChanges();
 
                 if (sendEmail)
                 {
@@ -181,6 +205,38 @@ namespace Foodshare.Controllers
                 // we can claim it!
                 donation.ClaimedById = userId;
                 db.SaveChanges();
+
+                var body = "<h1>Great News!</h1>" +
+                    "<p>Your donation has been claimed by:</p>" +
+                    "<p><b>Email:</b> " + donation.ClaimedBy.Email + "</p>" +
+                    "<p><b>Telephone:</b> " + donation.ClaimedBy.Telephone + "</p>" +
+                    "";
+
+                // now send notification
+                EmailHelper.SendEmail(donation.DonatedBy.Email, "Your donation has been claimed.", body);
+
+
+                var between = donation.AvailableFrom.ToString("dd MMM yyyy");
+
+                if (donation.AvailableFrom.Date == donation.AvailableTo.Date)
+                {
+                    between += " " + donation.AvailableFrom.ToString("HH:mm") + " - " + donation.AvailableTo.ToString("HH:mm");
+                }
+                else
+                {
+                    between += " " + donation.AvailableFrom.ToString("HH:mm") + " - " + donation.AvailableTo.ToString("dd MMM yyyy") + " " + donation.AvailableTo.ToString("HH:mm");
+                }
+
+                body = "<h1>Donation Claimed</h1>" +
+                    "<p><b>Description:</b> " + donation.Description + "</p>" +
+                    "<p><b>Location:</b> " + donation.Location + "</p>" +
+                    "<p><b>Contact Email:</b> " + donation.DonatedBy.Email + "</p>" +
+                    "<p><b>Contact Phone:</b> " + donation.Phone + "</p>" +
+                    "<p><b>Collection Date/Time:</b> " + between + "</p>" +
+                    "";
+
+                EmailHelper.SendEmail(donation.ClaimedBy.Email, "You've claimed this donation.", body);
+
             }
 
 

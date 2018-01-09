@@ -214,6 +214,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Migrations\201706170719282_Initial.cs" />
     <Compile Include="Migrations\201706170719282_Initial.Designer.cs">
       <DependentUpon>201706170719282_Initial.cs</DependentUpon>
@@ -352,6 +353,8 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <Content Include="Content\guidelines-for-donations-of-cooked-or-prepared-food.pdf" />
+    <Content Include="Content\label-for-donated-prepared-food.docx" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
@@ -411,6 +414,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Donations\Claim.cshtml" />
     <Content Include="Views\Account\PleaseConfirmEmail.cshtml" />
+    <Content Include="Views\Manage\EditPhoneNumber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

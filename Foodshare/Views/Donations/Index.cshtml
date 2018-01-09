@@ -48,6 +48,26 @@
 </div>
 }
 
+@if (User.IsInRole("Agency") || User.IsInRole("Administrator"))
+{
+    <div class="row">
+
+        <div class="col-xs-12">
+
+            <div class="well">
+                <ul>
+                    <li><a target="_blank" href="~/Content/guidelines-for-donations-of-cooked-or-prepared-food.pdf">Guidelines for donations of cooked or prepared food</a></li>
+                    <li><a target="_blank" href="~/Content/label-for-donated-prepared-food.docx">Label for donated prepared food</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+}
+
+
+
 <div class="row">
     <div class="col-xs-12 text-right">
 
@@ -61,57 +81,69 @@
 @foreach (var item in Model) {
 
 
+<div class="@((item.ClaimedById != null && item.ClaimedById == ViewBag.UserId) ? "panel panel-success" : "")" style="margin-top: 1em;padding-bottom: 1em;">
 
-<div class="row" style="margin-top: 1em;">
+
+    <div class="row" style="margin-top: 1em;">
         <div class="col-xs-12 col-sm-3 ">
-            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" style="width: 100%; max-height: 500px; margin: 0 auto;"/>
+            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" style="width: 100%; max-height: 500px; margin: 0 auto;" />
         </div>
         <div class="col-xs-12 col-sm-6">
-          <h2>@Html.DisplayFor(modelItem => item.Title)</h2> <br>
-          <p>
-          @Html.DisplayFor(modelItem => item.Location)<br>
-          @Html.DisplayFor(modelItem => item.Description)</p>
+            <h2>@Html.DisplayFor(modelItem => item.Title)</h2> <br>
+                                                               <p>
+                                                                   <strong>Location:</strong> @Html.DisplayFor(modelItem => item.Location)</p><p><strong>Description: </strong><br/>
+                                                                   @Html.DisplayFor(modelItem => item.Description)
+                                                               </p>
 
             <div><strong>Date:</strong> @item.AvailableFrom.ToString("dd MMM yyyy") <strong>Time:</strong> between @item.AvailableFrom.ToString("HH:mm") and @item.AvailableTo.ToString("HH:mm")</div>
         </div>
         <div class="col-xs-12 col-sm-3">
 
             @if (item.DonatedById == ViewBag.UserId)
-            {
-                <p style="margin-top: 1em;"><a class="btn btn-default" href="@Url.Action("Edit", new { id = item.DonationId })">Edit</a></p>
-            }
+    {
+        <p style="margin-top: 1em;"><a class="btn btn-default" href="@Url.Action("Edit", new { id = item.DonationId })">Edit</a></p>
+}
 
             @if (User.IsInRole("Agency") && item.ClaimedById == null && item.AvailableTo > DateTime.Now && item.DonatedById != ViewBag.UserId)
-            {
-                <p><strong>Remaining:</strong></p>
-                <p>
-                    <span class="countdown" data-finish="@item.AvailableTo.ToString("dd-MM-yyyy HH:mm:ss")"></span>
-                </p>
-                <p style="margin-top: 1em;"><a class="btn btn-default btn-lg" href="@Url.Action("Claim", new { id = item.DonationId })"><span class="glyphicon glyphicon-heart"></span> Claim</a></p>
-            }
+    {
+        <p><strong>Remaining:</strong></p>
+        <p>
+            <span class="countdown" data-finish="@item.AvailableTo.ToString("dd-MM-yyyy HH:mm:ss")"></span>
+        </p>
+        <p style="margin-top: 1em;"><a class="btn btn-default btn-lg" href="@Url.Action("Claim", new { id = item.DonationId })"><span class="glyphicon glyphicon-heart"></span> Claim</a></p>
+}
 
             @if (item.AvailableTo < DateTime.Now)
-            {
-                <p style="margin-top: 1em;" class="text-danger">Donation is no longer available</p>
-            }
-            
+    {
+        <p style="margin-top: 1em;" class="text-danger">Donation is no longer available</p>
+}
+
             @if (item.ClaimedById != null && item.ClaimedById != ViewBag.UserId)
-            {
-                <p style="margin-top: 1em;" class="text-danger">Donation has been claimed </p>
-            }
+    {
+        <p style="margin-top: 1em;" class="text-danger">
+            Donation has been claimed @if (User.IsInRole("Administrator"))
+    {<span>by @item.ClaimedBy.Email</span>}
+        </p>
+}
 
             @if (item.ClaimedById != null && item.ClaimedById == ViewBag.UserId)
-            {
-                <p><strong>Pickup Within:</strong></p>
-                            <p>
-                                <span class="countdown" data-finish="@item.AvailableTo.ToString("dd-MM-yyyy HH:mm:ss")"></span>
-                            </p>
+    {
+        <p><strong>Pickup Within:</strong></p>
+        <p>
+            <span class="countdown" data-finish="@item.AvailableTo.ToString("dd-MM-yyyy HH:mm:ss")"></span>
+        </p>
 
-                <p style="margin-top: 1em;" class="text-success">You have claimed this Donation</p>
-            }
-      </div>
+        <p style="margin-top: 1em;" class="text-success">You have claimed this Donation</p>
+
+        <p><strong>Contact:</strong> @item.DonatedBy.Email</p>
+        <p><strong>Telephone:</strong> @item.Phone</p>
+
+}
+        </div>
     </div>
-    <br>
+
+</div>
+
 
     }
 

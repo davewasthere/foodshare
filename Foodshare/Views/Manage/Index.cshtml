@@ -14,15 +14,29 @@
         <dd>
             [
             @if (Model.HasPassword)
+        {
+            @Html.ActionLink("Change your password", "ChangePassword")
+    }
+    else
+    {
+        @Html.ActionLink("Create", "SetPassword")
+}
+            ]
+        </dd>
+
+        <dt>Telephone:</dt>
+        <dd>
+            [
+            @if (!String.IsNullOrWhiteSpace(Model.PhoneNumber))
             {
-                @Html.ActionLink("Change your password", "ChangePassword")
+                @Html.ActionLink(Model.PhoneNumber, "EditPhoneNumber")
             }
             else
             {
-                @Html.ActionLink("Create", "SetPassword")
+                @Html.ActionLink("Add Phone Number", "EditPhoneNumber")
             }
             ]
         </dd>
-        
+
     </dl>
 </div>

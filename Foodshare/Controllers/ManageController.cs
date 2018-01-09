@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Foodshare.Models;
+using Foodshare.DAL;
 
 namespace Foodshare.Controllers
 {
@@ -246,9 +247,42 @@ namespace Foodshare.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Manage/SetPassword
-        public ActionResult SetPassword()
+
+        // GET: /Manage/EditPhoneNumber
+        public async Task<ActionResult> EditPhoneNumber()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            return View((object)user.PhoneNumber);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditPhoneNumber(string phoneNumber)
+        {
+            if (ModelState.IsValid)
+            {
+                FoodshareDbContext db = new FoodshareDbContext();
+
+                var userId = User.Identity.GetUserId();
+
+                var user = db.Users.Where(x => x.Id == userId).Single();
+                user.PhoneNumber = phoneNumber;
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+
+            }
+
+            return View((object)phoneNumber);
+        }
+
+
+                //
+                // GET: /Manage/SetPassword
+                public ActionResult SetPassword()
         {
             return View();
         }
