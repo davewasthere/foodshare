@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -121,7 +122,7 @@ namespace Foodshare.Controllers
                     // doesn't exist
                     user = new ApplicationUser { Email = email, UserName = email, DateCreated = DateTime.Now };
 
-                    var result = await UserManager.CreateAsync(user, "Donations123");
+                    var result = await UserManager.CreateAsync(user, ConfigurationManager.AppSettings["temporaryPassword"]);
 
                     if (result.Succeeded)
                     {
