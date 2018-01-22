@@ -77,6 +77,21 @@
 
 </div>
 
+@if (User.IsInRole("Agency") && Model.Where(x => x.ClaimedById == null && x.AvailableTo > DateTime.Now).Count() == 0)
+{
+    <div class="row">
+        <div class="col-xs-12">
+
+            <h3>No Available Donations</h3>
+            <div class="text-info">
+                <p>Currently there are no donations available. However as soon as a supplier lists a new donation, you'll get a notification via email.</p>
+                <p>If you, as an Agency, have excess food, you can also list it here as a donation that other Agencies can claim.</p>
+            </div>
+
+        </div>
+    </div>
+}
+
 
 @foreach (var item in Model) {
 
@@ -130,7 +145,14 @@
     {
         <p><strong>Pickup Within:</strong></p>
         <p>
-            <span class="countdown" data-finish="@item.AvailableTo.ToString("dd-MM-yyyy HH:mm:ss")"></span>
+            @if (item.AvailableTo > DateTime.Now)
+    {
+        <span class="countdown" data-finish="@item.AvailableTo.ToString("dd-MM-yyyy HH:mm:ss")"></span>
+}
+else
+{
+        <span class="text-warning">This item is overdue to be picked up.</span>
+}
         </p>
 
         <p style="margin-top: 1em;" class="text-success">You have claimed this Donation</p>

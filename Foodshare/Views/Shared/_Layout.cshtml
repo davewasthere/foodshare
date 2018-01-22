@@ -23,16 +23,17 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Donations", "Index", "Donations")</li>
-                            if (User.IsInRole("Administrator"))
-                            {
-                            <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                            }
-                        }
+    {
+                <li class="@(ViewBag.Title.StartsWith("Donations") ? "active" : "")">@Html.ActionLink("Donations", "Index", "Donations")</li>
+if (User.IsInRole("Administrator"))
+{
+                <li class="@(ViewBag.Title.StartsWith("Users") ? "active" : "")">@Html.ActionLink("Users", "Index", "Users")</li>
+                <li class="@(ViewBag.Title.StartsWith("Invite") ? "active" : "")">@Html.ActionLink("Invite", "BulkInvite", "Users")</li>
+}
+}
 
-                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                @*<li>@Html.ActionLink("About", "About", "Home")</li>
+    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

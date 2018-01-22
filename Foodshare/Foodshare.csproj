@@ -415,6 +415,7 @@
     <Content Include="Views\Donations\Claim.cshtml" />
     <Content Include="Views\Account\PleaseConfirmEmail.cshtml" />
     <Content Include="Views\Manage\EditPhoneNumber.cshtml" />
+    <Content Include="Views\Users\BulkInvite.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

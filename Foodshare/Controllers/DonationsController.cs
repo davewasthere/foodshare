@@ -27,7 +27,7 @@ namespace Foodshare.Controllers
 
             var userId = User.Identity.GetUserId();
 
-            var phoneNumber = db.Users.Where(x => x.Id == userId).Select(x => x.PhoneNumber).Single();
+            var phoneNumber = db.Users.Where(x => x.Id == userId).Select(x => x.PhoneNumber).SingleOrDefault();
 
             if (User.IsInRole("Agency"))
             {
@@ -37,7 +37,7 @@ namespace Foodshare.Controllers
                 }
             }
 
-            var verifiedEmail = db.Users.Where(x => x.Id == userId).Select(x => x.EmailConfirmed).Single();
+            var verifiedEmail = db.Users.Where(x => x.Id == userId).Select(x => x.EmailConfirmed).SingleOrDefault();
 
             var items = new List<Donation>();
 
