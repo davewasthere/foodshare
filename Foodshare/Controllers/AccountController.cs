@@ -160,6 +160,7 @@ namespace Foodshare.Controllers
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    code = System.Web.HttpUtility.UrlEncode(code);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
@@ -181,7 +182,9 @@ namespace Foodshare.Controllers
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
+
+            var decoded = System.Web.HttpUtility.UrlDecode(code);
+            var result = await UserManager.ConfirmEmailAsync(userId, decoded);
 
             if (result.Succeeded)
             {
@@ -220,15 +223,29 @@ namespace Foodshare.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (user == null)
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
+                    // Don't reveal that the user does not exist
                     return View("ForgotPasswordConfirmation");
+                }
+
+                if (!(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                {
+                    // user hasn't been confirmed yet... resend confirmation email
+                    string code2 = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    code2 = System.Web.HttpUtility.UrlEncode(code2);
+                    var callbackUrl2 = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code2 }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl2 + "\">here</a>");
+
+                    // Don't reveal that the user is not yet active
+                    return View("ForgotPasswordConfirmation");
+
                 }
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                code = System.Web.HttpUtility.UrlEncode(code);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
                 await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
@@ -271,7 +288,7 @@ namespace Foodshare.Controllers
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await UserManager.ResetPasswordAsync(user.Id, System.Web.HttpUtility.UrlEncode(code), model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");

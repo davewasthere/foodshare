@@ -184,7 +184,7 @@ namespace Foodshare.Controllers
         }
 
 
-
+        [Authorize(Roles = "Agency")]
         public ActionResult Claim(int id)
         {
             var donation = db.Donations.Where(x => x.DonationId == id).SingleOrDefault();
@@ -195,6 +195,7 @@ namespace Foodshare.Controllers
             return View(donation);
         }
 
+        [Authorize(Roles = "Agency")]
         public ActionResult ConfirmClaim(int id)
         {
             var donation = db.Donations.Where(x => x.DonationId == id).SingleOrDefault();
