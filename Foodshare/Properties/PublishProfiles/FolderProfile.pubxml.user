@@ -32,10 +32,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/29/2017 15:55:35</publishTime>
     </File>
     <File Include="bin/Foodshare.dll">
-      <publishTime>03/05/2018 20:40:27</publishTime>
+      <publishTime>03/11/2018 18:39:01</publishTime>
     </File>
     <File Include="bin/Foodshare.pdb">
-      <publishTime>03/05/2018 20:40:27</publishTime>
+      <publishTime>03/11/2018 18:39:01</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>10/29/2017 15:55:35</publishTime>

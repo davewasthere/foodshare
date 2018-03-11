@@ -418,7 +418,6 @@
     <Content Include="Views\Users\BulkInvite.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\uploads\" />
   </ItemGroup>
   <ItemGroup>
