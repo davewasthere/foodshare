@@ -132,49 +132,52 @@ namespace Foodshare.Controllers
 
                 //donation.DonatedBy.PhoneNumber = donation.Phone;
                 //db.SaveChanges();
-
-                if (sendEmail)
+                try
                 {
-                    var message = new MailMessage();
-
-                    message.To.Add(ConfigurationManager.AppSettings["donationsEmail"]);
-
-                    var agencyRole = db.Roles.Where(x => x.Name == "Agency").SingleOrDefault();
-
-                    if (agencyRole != null)
+                    if (sendEmail)
                     {
-                        var userIds = agencyRole.Users.Select(x => x.UserId).ToList();
+                        var message = new MailMessage();
 
-                        var users = db.Users.Where(x => userIds.Contains(x.Id) && x.EmailConfirmed).Select(x => x.Email).ToList();
+                        message.To.Add(ConfigurationManager.AppSettings["donationsEmail"]);
 
-                        foreach (var user in users)
-                        { 
-                            message.Bcc.Add(new MailAddress(user));
-                        }
+                        var agencyRole = db.Roles.Where(x => x.Name == "Agency").SingleOrDefault();
 
-                        
-                    }
-
-                    var domainName = Request.Url.GetLeftPart(UriPartial.Authority);
-
-
-                    message.Subject = "New Donation Available: " + donation.Title;
-                    message.Body = "A new donation has been added at " + domainName  + "\r\n\r\nTitle: " + donation.Title + "\r\nDescription: " + donation.Description + "\r\nLocation: " + donation.Location;
-
-                    using (var smtpClient = new SmtpClient())
-                    {
-                        try
+                        if (agencyRole != null)
                         {
-                            // I've learnt my lesson with public repos. ;)
-                            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["emailUsername"], ConfigurationManager.AppSettings["emailPassword"]);
-                            smtpClient.Credentials = credentials;
+                            var userIds = agencyRole.Users.Select(x => x.UserId).ToList();
 
-                            smtpClient.Send(message);
+                            var users = db.Users.Where(x => userIds.Contains(x.Id) && x.EmailConfirmed).Select(x => x.Email).ToList();
+
+                            foreach (var user in users)
+                            {
+                                message.Bcc.Add(new MailAddress(user));
+                            }
+
+
                         }
-                        catch { }
+
+                        var domainName = Request.Url.GetLeftPart(UriPartial.Authority);
+
+
+                        message.Subject = "New Donation Available: " + donation.Title;
+                        message.Body = "A new donation has been added at " + domainName + "\r\n\r\nTitle: " + donation.Title + "\r\nDescription: " + donation.Description + "\r\nLocation: " + donation.Location;
+
+                        using (var smtpClient = new SmtpClient())
+                        {
+                            try
+                            {
+                                // I've learnt my lesson with public repos. ;)
+                                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["emailUsername"], ConfigurationManager.AppSettings["emailPassword"]);
+                                smtpClient.Credentials = credentials;
+
+                                smtpClient.Send(message);
+                            }
+                            catch { }
+                        }
                     }
                 }
-
+                catch (Exception ex)
+                { }
 
                 return RedirectToAction("Index");
             }

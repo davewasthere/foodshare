@@ -355,6 +355,7 @@
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\guidelines-for-donations-of-cooked-or-prepared-food.pdf" />
     <Content Include="Content\label-for-donated-prepared-food.docx" />
+    <None Include="Properties\PublishProfiles\bendigofoodshare - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
