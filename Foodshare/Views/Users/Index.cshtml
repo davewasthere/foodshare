@@ -40,6 +40,19 @@
 
 <h2>Users</h2>
 
+@if (TempData["UsersEmailed"] != null)
+{
+    var log = (List<string>)TempData["UsersEmailed"];
+
+    <div class="alert-info alert-dismissable" style="padding: 1em;">
+        <h3>Invitation Sent:</h3>
+        @foreach (var item in log)
+        {
+        <div>@item</div>
+        }
+    </div>
+}
+
 
 <table style="width: 100%;">
     <thead>
