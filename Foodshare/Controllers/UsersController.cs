@@ -111,6 +111,8 @@ namespace Foodshare.Controllers
         [HttpPost]
         public async Task<ActionResult> BulkInvite(string EmailAddresses, bool UserIsAgency)
         {
+            var tempPassword = ConfigurationManager.AppSettings["temporaryPassword"];
+
             List<string> emailLog = new List<string>();
 
             var emails = EmailAddresses.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -124,7 +126,7 @@ namespace Foodshare.Controllers
                     // doesn't exist
                     user = new ApplicationUser { Email = email, UserName = email, DateCreated = DateTime.Now };
 
-                    var result = await UserManager.CreateAsync(user, ConfigurationManager.AppSettings["temporaryPassword"]);
+                    var result = await UserManager.CreateAsync(user, tempPassword);
 
                     if (result.Succeeded)
                     {
@@ -162,7 +164,7 @@ namespace Foodshare.Controllers
                             "<p>To be able to accept the food, you need to click on the link below, complete your details and change your temporary password to something you can remember.</p>" +
                             "<p>Get online and give it a go!</p>" +
                             "<p>Please activate your account by clicking <a href=\"" + callbackUrl + "\">here</a></p>" +
-                            "<p>You have been assigned a temporary password of <b>Donations123</b> - please change this after you activate your account.</p>" +
+                            "<p>You have been assigned a temporary password of <b>" + tempPassword + "</b> - please change this after you activate your account.</p>" +
                             "<p>thanks,</p>" +
                             "<p>Cathie Steele<br />" +
                             "Chair of the Board<br />" +
@@ -173,7 +175,7 @@ namespace Foodshare.Controllers
                     {
                         message = "<p>You have been invited to be a supplier at Bendigo Foodshare.</p>" +
                             "<p>Please activate your account by clicking <a href=\"" + callbackUrl + "\">here</a></p>" +
-                            "<p>You have been assigned a temporary password of <b>Donations123</b> - please change this after you activate your account.</p>";
+                            "<p>You have been assigned a temporary password of <b>" + tempPassword + "</b> - please change this after you activate your account.</p>";
                     }
 
                     await UserManager.SendEmailAsync(user.Id, "Bendigo Foodshare App Invitation", message);
