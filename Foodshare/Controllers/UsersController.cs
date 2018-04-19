@@ -100,7 +100,7 @@ namespace Foodshare.Controllers
 
 
 
-            return Json(new { id = id, isInRole = isInRole });
+            return Json(new { id = id, isInRole = isInRole, role = role });
         }
 
         public ActionResult BulkInvite()
@@ -124,7 +124,7 @@ namespace Foodshare.Controllers
                 if (user == null)
                 {
                     // doesn't exist
-                    user = new ApplicationUser { Email = email, UserName = email, DateCreated = DateTime.Now };
+                    user = new ApplicationUser { Email = email, UserName = email, DateCreated = DateTime.Now, InvitationSent = DateTime.Now };
 
                     var result = await UserManager.CreateAsync(user, tempPassword);
 
@@ -137,6 +137,9 @@ namespace Foodshare.Controllers
                 {
                     if (!user.EmailConfirmed)
                     {
+                        user.InvitationSent = DateTime.Now;
+                        db.SaveChanges();
+
                         emailLog.Add(user.Email + " already existed - will resend invitation email");
                     }
                 }

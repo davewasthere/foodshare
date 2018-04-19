@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201711060837565_Decorations.Designer.cs">
       <DependentUpon>201711060837565_Decorations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804190746530_InvitiationSent.cs" />
+    <Compile Include="Migrations\201804190746530_InvitiationSent.Designer.cs">
+      <DependentUpon>201804190746530_InvitiationSent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Donation.cs" />
@@ -451,6 +455,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711060837565_Decorations.resx">
       <DependentUpon>201711060837565_Decorations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804190746530_InvitiationSent.resx">
+      <DependentUpon>201804190746530_InvitiationSent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

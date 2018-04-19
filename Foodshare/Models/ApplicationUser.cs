@@ -17,6 +17,7 @@ namespace Foodshare.Models
         public bool IsAgency { get; set; }
 
         public DateTime DateCreated { get; set; }
+        public DateTime? InvitationSent { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

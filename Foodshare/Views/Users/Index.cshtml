@@ -3,6 +3,33 @@
     ViewBag.Title = "Users";
 }
 
+@section head{
+
+<style type="text/css">
+
+    .user-role .fa-circle {
+        color: #ccc;
+    }
+
+    .user-role .fa-check {
+        color: #0d4e11;
+    }
+    
+    .user-role {
+        cursor: pointer;
+        opacity: 0.8;
+    }
+
+    .user-role:hover {
+        cursor: pointer;
+        opacity: 1;
+    }
+
+</style>
+    
+}
+
+
 @section scripts{
 
 <script>
@@ -20,15 +47,14 @@
                 data: { id: id, role: role }
             }).done(function (data) {
 
+                if (data.isInRole) {
+                    $('span[data-id="' + id + '"][data-role="' + role + '"]').html('<i class="fas fa-check fa-2x"></i>');
+                }
+                else {
+                    $('span[data-id="' + id + '"][data-role="' + role + '"]').html('<i class="fas fa-circle fa-2x"></i>');
+                }
 
             });
-
-            if ($(this).hasClass('btn-danger')) {
-                $(this).removeClass('btn-danger').addClass('btn-link');
-            }
-            else {
-                $(this).removeClass('btn-link').addClass('btn-danger');
-            }
 
         });
 
@@ -60,41 +86,52 @@
             <th>Email</th>
             <th>Date</th>
             <th>Company</th>
-            <th>Confirmed?</th>
+            <th class="text-center">Confirmed?</th>
 
 
             @foreach (var role in ViewBag.Roles)
             {
-                <th>@role.Name</th>
+                <th class="text-center">@role.Name</th>
             }
 
         </tr>
     </thead>
     <tbody>
 
-        @foreach (var user in Model)
+        @foreach (var user in Model.OrderByDescending(x => x.InvitationSent).ThenByDescending(x => x.DateCreated).ToList())
         {
-            <tr>
-                <td>@user.Email </td>
+        <tr>
+            <td>@user.Email </td>
+            @if (user.InvitationSent.HasValue)
+            {
+                <td>@user.InvitationSent.Value.ToString()</td>
+            }
+            else
+            {
                 <td>@user.DateCreated.ToString()</td>
-                <td>@user.Company</td>
-                <td>@if (user.EmailConfirmed)
-                { <span class="glyphicon glyphicon-envelope"></span> }</td>
+            }
 
-                @foreach (var role in ViewBag.Roles)
-                {
-                    if (user.Roles.Select(x => x.RoleId).Contains((string)role.Id))
-                    {
-                        <td><span data-id="@user.Id" data-role="@role.Name" class="btn btn-danger user-role">X</span></td>
-                    }
-                    else
-                    {
-                        <td><span data-id="@user.Id" data-role="@role.Name" class="btn btn-link user-role">X</span></td>
-                    }
 
-                }
+            <td>@user.Company</td>
+            <td class="text-center">
+                @if (user.EmailConfirmed)
+        {<i class="fas fa-envelope fa-2x"></i>}
+        </td>
 
-            </tr>
+        @foreach (var role in ViewBag.Roles)
+{
+    if (user.Roles.Select(x => x.RoleId).Contains((string)role.Id))
+    {
+        <td class="text-center"><span data-id="@user.Id" data-role="@role.Name" class="user-role"><i class="fas fa-check fa-2x"></i></span></td>
+    }
+    else
+    {
+            <td class="text-center"><span data-id="@user.Id" data-role="@role.Name" class="user-role"><i class="fas fa-circle fa-2x"></i></span></td>
+    }
+
+}
+
+        </tr>
         }
 
     </tbody>
